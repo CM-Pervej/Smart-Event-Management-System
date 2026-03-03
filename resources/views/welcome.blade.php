@@ -28,7 +28,7 @@
                 <a href="#features" class="hover:border-b-2 hover:border-white">Features</a>
                 <a href="#about" class="hover:border-b-2 hover:border-white">About</a>
                 <a href="#contact" class="hover:border-b-2 hover:border-white">Contact</a>
-                <label for="login-modal" class="cursor-pointer hover:border-b-2 hover:border-white">Login</label>
+                <a href="{{ route('login') }}" class="cursor-pointer hover:border-b-2 hover:border-white">Login</a>
             </div>
         </div>
     </nav>
@@ -163,26 +163,5 @@
             © 2025 AmarEvent Inc. All rights reserved • <a href="#" class="link">Privacy Policy</a> • <a href="#" class="link">Terms</a>
         </div>
     </footer>
-
-    <!-- Login Modal -->
-    <input type="checkbox" id="login-modal" class="modal-toggle" />
-    <div class="modal">
-        <div class="modal-box">
-            <div class="relative h-[600px] overflow-hidden">
-                <!-- Embed the login page -->
-                <iframe src="{{ route('login') }}" class="w-full h-full border-0" scrolling="no" loading="lazy"></iframe>
-
-                <!-- Close button -->
-                <label for="login-modal" class="btn btn-sm btn-circle absolute top-2 right-2 z-10 bg-white text-black">✕</label>
-            </div>
-        </div>
-        <label class="modal-backdrop" for="login-modal"></label>
-    </div>
-
-    <script>
-        function openLoginModal() {
-            document.getElementById('login-modal').checked = true;
-        }
-    </script>
 </body>
 </html>
