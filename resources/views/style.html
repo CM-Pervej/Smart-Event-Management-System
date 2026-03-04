@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>John Doe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.0.0/dist/full.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/8e69038194.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-gray-50">
+
+<div class="flex h-screen">
+
+  <!-- Sidebar (Optional) -->
+  <aside class="w-64 bg-white shadow-md p-4 hidden md:block">
+    <h1 class="text-2xl font-bold mb-6">Sidebar</h1>
+    <ul class="space-y-3">
+      <li><a href="#" class="hover:text-blue-500">Dashboard</a></li>
+      <li><a href="#" class="hover:text-blue-500">Profile</a></li>
+      <li><a href="#" class="hover:text-blue-500">Settings</a></li>
+    </ul>
+  </aside>
+
+  <div class="flex-1 flex flex-col">
+    <!-- Top Bar -->
+    <header class="shadow flex items-center w-full p-4 bg-white">
+      <div class="flex-1 text-xl font-semibold">EventMS</div>
+      <div class="flex items-center gap-3">
+        <img src="default-profile.jpg" alt="Profile" class="w-10 h-10 rounded-full object-cover border border-gray-300">
+        <span class="font-medium">John Doe</span>
+      </div>
+    </header>
+
+    <!-- Profile Section -->
+    <section class="flex flex-col m-6 p-6 border border-gray-300 shadow-md rounded-lg bg-white">
+      <div class="flex justify-between items-center">
+        <!-- Left: Profile Image & Basic Info -->
+        <section class="flex items-center gap-5">
+          <div class="w-max">
+            <img src="default-profile.jpg" class="w-40 h-40 object-cover border-4 border-blue-100 rounded-lg" alt="Profile Picture"/>
+          </div>
+          <div>
+            <p class="text-4xl font-bold">John Doe</p>
+            <p class="text-xl text-gray-500 font-semibold">Attendee</p>
+            <div class="flex gap-3 mt-2">
+              <p class="flex flex-col space-y-2">
+                <span><i class="fa-solid fa-envelope"></i></span>
+                <span><i class="fa-solid fa-phone-volume"></i></span>
+                <span><i class="fa-solid fa-location-dot"></i></span>
+              </p>
+              <p class="flex flex-col space-y-2">
+                <span><a href="mailto:johndoe@example.com" class="text-blue-600 hover:underline">johndoe@example.com</a></span>
+                <span><a href="tel:+1234567890" class="text-green-600 hover:underline">+1 234 567 890</a></span>
+                <span><a href="https://www.google.com/maps/search/123 Main Street" target="_blank" class="text-purple-600 hover:underline">123 Main Street</a></span>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Right: Preferences -->
+        <div>
+          <h2 class="text-2xl font-bold border-b mb-2">Preferences</h2>
+          <p>Dietary Requirements: <strong>None</strong></p>
+          <p>Accessibility Needs: <strong>None</strong></p>
+        </div>
+      </div>
+
+      <!-- Email Verification -->
+      <div class="mt-6 text-yellow-600 bg-yellow-100 p-4 rounded-xl">
+        <p>Your email is not verified. <a href="#" class="text-blue-500">Click here to verify your email.</a></p>
+      </div>
+
+    </section>
+  </div>
+</div>
+
+</body>
+</html>

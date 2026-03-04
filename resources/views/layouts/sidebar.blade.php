@@ -1,4 +1,4 @@
-<aside class="w-56 bg-base-200 shadow-lg hidden md:block">
+<aside class="w-56 bg-white shadow-lg hidden md:block rounded-r-2xl border border-gray-200">
     <ul class="menu p-4 text-base-content space-y-2">
         <li>
             <a href="{{ route('dashboard') }}" 

@@ -46,6 +46,7 @@ class AuthController extends Controller
             $minutes = 60*24;
             Cookie::queue('user_id', $user->id, $minutes);
             Cookie::queue('user_name', $user->name, $minutes);
+            Cookie::queue('user_role', $user->role, $minutes);
 
             return redirect()->route('dashboard')->with('success', 'Login Successful!');
         }
@@ -56,20 +57,21 @@ class AuthController extends Controller
         ])->withInput();
     }
 
-    public function dashboard(Request $request){
-        $userName = $request->cookie('user_name');
-
-        if(!$userName){
-            return redirect()->route('login')->with('error', 'Please login first');
+    public function dashboard(Request $request)
+    {
+        if (!$request->cookie('user_id')) {
+            return redirect()->route('login')
+                ->with('error', 'Please login first.');
         }
 
-        return view('dashboard', compact('userName'));
+        return view('dashboard');
     }
 
     // logged out 
     public function logout(){
         Cookie::queue(Cookie::forget('user_id'));
         Cookie::queue(Cookie::forget('user_name'));
+        Cookie::queue(Cookie::forget('user_role'));
         return redirect()->route('login')->with('success', 'Logged out successfully!');
     }
 }

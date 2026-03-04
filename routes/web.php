@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,4 +21,11 @@ Route::get('/login', function(){
 Route::post('/login', [AuthController::class, 'login'])->name('customers.login');
 
 Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
+
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
+
+Route::get('/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
+
+Route::put('/profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
