@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\OrganizerController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +30,7 @@ Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.s
 Route::get('/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
 
 Route::put('/profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
+
+Route::get('/organization', [OrganizerController::class, 'show'])->name('organizer.organizer');
+
+Route::get('/organization', [OrganizerController::class, 'create'])->name('organizer.create');

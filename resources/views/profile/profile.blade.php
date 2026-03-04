@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-<div class=" py-6 px-10 bg-white">
+<div class="py-6 px-10 bg-white">
     {{-- Main two-column layout --}}
     <div class="flex flex-col md:flex-row md:justify-between gap-8">
         {{-- Left Column: Profile Picture & Basic Info --}}

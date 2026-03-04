@@ -1,8 +1,8 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="max-w-4xl mx-auto p-6 bg-white shadow rounded-lg">
-    <h2 class="text-2xl font-bold mb-6">My Profile</h2>
+<div class="py-6 px-10 bg-white">
+    <h2 class="text-2xl font-bold mb-6">Your Profile</h2>
 
     @if(session('success'))
         <div class="bg-green-100 text-green-700 p-3 rounded mb-4">

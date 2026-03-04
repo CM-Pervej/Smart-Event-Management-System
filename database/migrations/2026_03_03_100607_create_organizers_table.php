@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('website');
             $table->string('logo');
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }

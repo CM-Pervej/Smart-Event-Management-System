@@ -2,7 +2,7 @@
     <!-- Left Section -->
     <div class="flex items-center gap-6">
         <!-- Logo / Title -->
-        <h1 class="text-2xl font-extrabold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent tracking-wide"> EventMS </h1>
+        <h1 class="text-2xl font-extrabold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent tracking-wide">Smart EventMS </h1>
         <!-- Search Bar -->
         <div class="hidden md:flex">
             <label class="input input-bordered flex items-center gap-2 w-80">
@@ -66,7 +66,7 @@
                     </a>
                 </li>
                 <li><a class="hover:text-primary">⚙ Settings</a></li>
-                <li class="border-t border-base-200 mt-1 pt-1"> <a class="text-error hover:bg-error hover:text-white rounded-lg">🚪 Logout </a> </li>
+                <li class="border-t border-base-200 mt-1 pt-1"> <a href="{{ route('logout') }}" class="text-error hover:bg-error hover:text-white rounded-lg">🚪 Logout </a> </li>
             </ul>
         </div>
     </div>

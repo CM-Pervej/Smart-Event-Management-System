@@ -2,8 +2,8 @@
     <ul class="menu p-4 text-base-content space-y-2">
         <li>
             <a href="{{ route('dashboard') }}" 
-               class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
-               🏠 Dashboard
+                class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                🏠 Dashboard
             </a>
         </li>
 
@@ -14,8 +14,9 @@
         </li>
 
         <li>
-            <a href="#">
-                🎟 Registrations
+            <a href="{{ route('organizer.create') }}" 
+                class="{{ request()->routeIs('organizer.create') ? 'active' : '' }}"> 
+                🎟 Registrations 
             </a>
         </li>
 
@@ -30,10 +31,5 @@
                 ⚙ Settings
             </a>
         </li>
-
-        <li class="pt-6">
-            <a href="{{ route('logout') }}" class="btn btn-error btn-sm">Logout</a>
-        </li>
-
     </ul>
 </aside>
