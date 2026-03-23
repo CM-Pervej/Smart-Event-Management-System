@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('organizers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('organization_name');
-            $table->text('description');
-            $table->string('website');
-            $table->string('logo');
-            $table->boolean('status')->default(0);
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('organization_id')->constrained()->cascadeOnDelete();
+            $table->string('role')->default('staff');
+            $table->boolean('is_primary')->default(false);
+            $table->boolean('status')->default(1);
             $table->timestamps();
+            $table->unique(['user_id', 'organization_id']);
         });
     }
 

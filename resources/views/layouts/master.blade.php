@@ -9,7 +9,7 @@
     <script src="https://kit.fontawesome.com/8e69038194.js" crossorigin="anonymous"></script>
     @stack('styles')
 </head>
-<body class="bg-gray-100 min-h-screen flex flex-col">
+<body class="bg-black min-h-screen flex flex-col">
 
     @include('layouts.topbar')
 
@@ -19,7 +19,7 @@
         @include('layouts.sidebar')
 
         {{-- Main Content --}}
-        <main class="flex-1 overflow-y-auto border rounded-l-2xl">
+        <main class="flex-1 overflow-y-auto border rounded-l-2xl p-5 text-justify bg-white">
             @yield('content')
         </main>
 

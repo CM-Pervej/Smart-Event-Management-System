@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\OrganizerController;
+use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +31,13 @@ Route::get('/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit
 
 Route::put('/profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
 
-Route::get('/organization', [OrganizerController::class, 'show'])->name('organizer.organizer');
+Route::get('/organizations/active', [OrganizationController::class, 'active'])->name('organizations.active');
+Route::get('/organizations/inactive', [OrganizationController::class, 'inactive'])->name('organizations.inactive');
 
-Route::get('/organization', [OrganizerController::class, 'create'])->name('organizer.create');
+Route::get('/organization/create', [OrganizationController::class, 'create'])->name('organizations.create');
+Route::post('/organizations/store', [OrganizationController::class, 'store'])->name('organizations.store');
+
+Route::get('/organization/{slug}', [OrganizationController::class, 'showBySlug'])->name('organizations.organization');
+
+Route::get('/organizations/{slug}/edit', [OrganizationController::class, 'edit'])->name('organizations.edit');
+Route::put('/organizations/{slug}', [OrganizationController::class, 'update'])->name('organizations.update');

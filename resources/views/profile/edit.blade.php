@@ -1,7 +1,8 @@
 @extends('layouts.master')
+@section('title', $user->name)
 
 @section('content')
-<div class="py-6 px-10 bg-white">
+<div class="p-5 bg-white">
     <h2 class="text-2xl font-bold mb-6">Your Profile</h2>
 
     @if(session('success'))

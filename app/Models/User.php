@@ -52,7 +52,11 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class);
     }
 
-    public function organizer(){
-        return $this->hasOne(Organizer::class);
+    public function organizers(){
+        return $this->hasMany(Organizer::class);
+    }
+
+    public function organizations(){
+        return $this->hasMany(Organization::class);
     }
 }
