@@ -19,7 +19,7 @@
         @include('layouts.sidebar')
 
         {{-- Main Content --}}
-        <main class="flex-1 overflow-y-auto border rounded-l-2xl p-5 text-justify bg-white">
+        <main class="flex-1 overflow-y-auto border rounded-l-2xl text-justify bg-white">
             @yield('content')
         </main>
 

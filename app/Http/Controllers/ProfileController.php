@@ -13,8 +13,15 @@ class ProfileController extends Controller
     // show user & profile data 
     public function show($id)
     {
-        $user = User::with('profile')->findOrFail($id);
-        return view('profile.profile', compact('user'));
+        // Load user + profile + organizations
+        $user = User::with(['profile', 'organizations'])->findOrFail($id);
+
+        // Separate organizations
+        $activeOrgs   = $user->organizations->where('status', 'active')->where('is_verified', 1);
+        $inactiveOrgs = $user->organizations->where('status', 'inactive');
+
+        // Pass all to the view
+        return view('profile.profile', compact('user', 'activeOrgs', 'inactiveOrgs'));
     }
 
     // show edit page for user & profile data 

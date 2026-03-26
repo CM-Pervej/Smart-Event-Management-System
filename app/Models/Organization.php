@@ -35,4 +35,9 @@ class Organization extends Model
     public function organizers(){
         return $this->hasMany(Organizer::class);
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

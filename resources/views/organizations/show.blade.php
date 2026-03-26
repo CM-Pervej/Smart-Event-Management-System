@@ -3,154 +3,91 @@
 @section('title', $organization->name)
 
 @section('content')
-<div class="">
 
-    {{-- HEADER --}}
-    <div class="bg-white border rounded-xl overflow-hidden">
+@include('organizations.header')
 
-        {{-- Cover --}}
-        <div class="relative">
-            @if($organization->cover_image)
-                <img src="{{ asset('storage/'.$organization->cover_image) }}"
-                     class="w-full h-52 object-cover">
-            @else
-                <div class="w-full h-52 bg-gray-100"></div>
-            @endif
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6 p-5">
 
-            {{-- Logo --}}
-            @if($organization->logo)
-                <div class="absolute -bottom-8 left-6">
-                    <img src="{{ asset('storage/'.$organization->logo) }}"
-                         class="w-16 h-16 rounded-lg border bg-white p-1 shadow-sm object-cover">
-                </div>
-            @endif
+    {{-- LEFT --}}
+    <div class="lg:col-span-2 space-y-6">
+        {{-- About --}}
+        <div class="bg-white border p-5">
+            <h3 class="text-sm font-semibold text-gray-800 mb-2">About</h3>
+            <p class="text-sm text-gray-600 leading-relaxed">
+                {{ $organization->description ?? 'No description provided.' }}
+            </p>
         </div>
 
-        {{-- Title Row --}}
-        <div class="pt-10 pb-5 px-6 flex items-center justify-between">
-            <div>
-                <h1 class="text-xl font-semibold text-gray-900 tracking-tight">
-                    {{ $organization->name }}
-                </h1>
-                <p class="text-xs text-gray-500 mt-1">
-                    {{ ucfirst($organization->industry ?? 'N/A') }} · {{ ucfirst($organization->organization_type ?? 'N/A') }}
-                </p>
-            </div>
+        {{-- Map --}}
+        @php
+            $fullAddress = trim(($organization->address ?? '') . ' ' . ($organization->city ?? '') . ' ' . ($organization->country ?? ''));
+            $mapQuery = urlencode($fullAddress);
+        @endphp
 
-            <span class="text-xs px-3 py-1 rounded-md border 
-                {{ $organization->status === 'active' ? 'bg-green-50 text-green-600 border-green-200' : 'bg-gray-50 text-gray-500 border-gray-200' }}">
-                {{ ucfirst($organization->status) }}
-            </span>
-        </div>
-    </div>
-
-    <div class="flex justify-around my-3">
-        <a href="">About</a>
-        <a href="">Organizations</a>
-        <a href="">Events</a>
-        <a href="">Employees</a>
-        <a href="">Sessions</a>
-        <a href="">Speakers</a>
-    </div>
-
-
-    {{-- MAIN GRID --}}
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
-        {{-- LEFT --}}
-        <div class="lg:col-span-2 space-y-6">
-
-            {{-- About --}}
-            <div class="bg-white border rounded-xl p-5">
-                <h3 class="text-sm font-semibold text-gray-800 mb-2">About</h3>
-                <p class="text-sm text-gray-600 leading-relaxed">
-                    {{ $organization->description ?? 'No description provided.' }}
-                </p>
-            </div>
-
-            {{-- MAP --}}
-            @php
-                $fullAddress = trim(($organization->address ?? '') . ' ' . ($organization->city ?? '') . ' ' . ($organization->country ?? ''));
-                $mapQuery = urlencode($fullAddress);
-            @endphp
-
-            @if($fullAddress)
+        @if($fullAddress)
             <div class="bg-white border rounded-xl overflow-hidden">
                 <div class="px-5 py-3 border-b text-sm font-semibold text-gray-800">
                     Location
                 </div>
 
-                <iframe
-                    width="100%"
-                    height="250"
-                    frameborder="0"
-                    style="border:0"
-                    src="https://maps.google.com/maps?q={{ $mapQuery }}&output=embed"
-                    allowfullscreen>
+                <iframe width="100%" height="250" frameborder="0" style="border:0"
+                        src="https://maps.google.com/maps?q={{ $mapQuery }}&output=embed" allowfullscreen>
                 </iframe>
             </div>
-            @endif
+        @endif
+    </div>
 
-        </div>
+    {{-- RIGHT Sidebar --}}
+    <div class="space-y-6">
+        <div class="bg-white border p-5">
+            <h3 class="text-sm font-semibold text-gray-800 mb-4">Details</h3>
 
+            <div class="space-y-3 text-sm">
+                <div class="flex justify-between">
+                    <span class="text-gray-500">Owner</span>
+                    <span class="text-gray-800 font-medium">{{ $organization->user->name ?? '-' }}</span>
+                </div>
 
-        {{-- RIGHT SIDEBAR --}}
-        <div class="space-y-6">
+                <div class="flex justify-between">
+                    <span class="text-gray-500">Email</span>
+                    <span class="text-gray-800">{{ $organization->email ?? '-' }}</span>
+                </div>
 
-            {{-- Info Panel --}}
-            <div class="bg-white border rounded-xl p-5">
-                <h3 class="text-sm font-semibold text-gray-800 mb-4">Details</h3>
+                <div class="flex justify-between">
+                    <span class="text-gray-500">Phone</span>
+                    <span class="text-gray-800">{{ $organization->phone ?? '-' }}</span>
+                </div>
 
-                <div class="space-y-3 text-sm">
+                <div>
+                    <span class="text-gray-500 block mb-1">Website</span>
+                    @if($organization->website)
+                        <a href="{{ $organization->website }}" target="_blank"
+                           class="text-indigo-600 text-sm hover:underline break-all">
+                            {{ $organization->website }}
+                        </a>
+                    @else
+                        <span class="text-gray-400">-</span>
+                    @endif
+                </div>
 
-                    <div class="flex justify-between">
-                        <span class="text-gray-500">Owner</span>
-                        <span class="text-gray-800 font-medium">{{ $organization->user->name ?? '-' }}</span>
-                    </div>
-
-                    <div class="flex justify-between">
-                        <span class="text-gray-500">Email</span>
-                        <span class="text-gray-800">{{ $organization->email ?? '-' }}</span>
-                    </div>
-
-                    <div class="flex justify-between">
-                        <span class="text-gray-500">Phone</span>
-                        <span class="text-gray-800">{{ $organization->phone ?? '-' }}</span>
-                    </div>
-
-                    <div>
-                        <span class="text-gray-500 block mb-1">Website</span>
-                        @if($organization->website)
-                            <a href="{{ $organization->website }}" target="_blank"
-                               class="text-indigo-600 text-sm hover:underline break-all">
-                                {{ $organization->website }}
-                            </a>
-                        @else
-                            <span class="text-gray-400">-</span>
-                        @endif
-                    </div>
-
-                    <div>
-                        <span class="text-gray-500 block mb-1">Address</span>
-                        @if($fullAddress)
-                            <a href="https://www.google.com/maps?q={{ $mapQuery }}" target="_blank"
-                               class="text-gray-800 hover:text-indigo-600 text-sm leading-snug">
-                                {{ $fullAddress }}
-                            </a>
-                        @else
-                            <span class="text-gray-400">-</span>
-                        @endif
-                    </div>
-
+                <div>
+                    <span class="text-gray-500 block mb-1">Address</span>
+                    @if($fullAddress)
+                        <a href="https://www.google.com/maps?q={{ $mapQuery }}" target="_blank"
+                           class="text-gray-800 hover:text-indigo-600 text-sm leading-snug">
+                            {{ $fullAddress }}
+                        </a>
+                    @else
+                        <span class="text-gray-400">-</span>
+                    @endif
                 </div>
             </div>
-
-            {{-- Back --}}
-            <a href="{{ route('organizations.active') }}"
-               class="block text-center text-sm py-2 border rounded-lg text-gray-600 hover:bg-gray-50 transition">
-                ← Back to Organizations
-            </a>
         </div>
+
+        <a href="{{ route('organizations.active') }}"
+           class="block text-center text-sm py-2 border rounded-lg text-gray-600 hover:bg-gray-50 transition">
+            ← Back to Organizations
+        </a>
     </div>
 </div>
 
@@ -169,4 +106,5 @@
         </svg>
     </a>
 </div>
+
 @endsection
