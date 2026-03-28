@@ -9,13 +9,21 @@ use Illuminate\Http\Request;
 
 class OrganizerController extends Controller
 {
-    // show all employees from an organizations
+    // show active employees from an organizations
     public function show(Organization $organization)
     {
-        $employees = $organization->organizers()->with('user')->get();
+        $employees = $organization->organizers()->where('status', 1)->with('user.profile')->get();
 
         return view('organizers.organizers', compact('organization', 'employees'));
     }
+
+    // show inactive employees from an organizations
+    // public function inactive(Organization $organization)
+    // {
+    //     $employees = $organization->organizers()->where('status', 0)->with('user.profile')->get();
+
+    //     return view('organizers.organizers', compact('organization', 'employees'));
+    // }
 
     // show create form
     public function create(Organization $organization)

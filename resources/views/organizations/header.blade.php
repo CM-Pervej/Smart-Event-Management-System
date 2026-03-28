@@ -84,13 +84,13 @@
     @endphp
 
     {{-- Scrollable Tabs with Shadow & Ripple --}}
-    <div class="relative border-b border-gray-200 bg-gray-50">
+    <div class="relative border-gray-200 border">
         <div class="overflow-x-auto scrollbar-hide relative flex">
             <nav class="flex space-x-4 px-6 min-w-max relative">
                 @foreach($tabs as $name => $link)
                     @php $isActive = $currentUrl === $link; @endphp
                     <a href="{{ $link }}" 
-                       class="relative py-2 px-3 text-sm font-medium whitespace-nowrap
+                       class="relative p-3 text-sm font-medium whitespace-nowrap
                               overflow-hidden transition-all duration-300 ease-in-out
                               transform {{ $isActive ? 'text-gray-900 font-semibold bg-indigo-50 rounded-md scale-105 shadow-sm' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100 hover:rounded-md hover:scale-105' }}">
                         {{ $name }}
